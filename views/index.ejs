@@ -1,8 +1,13 @@
 <% include header %>
-    <div class="w3-panel w3-dark-grey"> Click On a user's profile to view their profile </div>
+<%if(students.length >0){%>
+    <div class="w3-panel w3-dark-grey"> Click On a user's profile to view their profile  </div>
+    <%}else{%>
+    <div class="w3-panel w3-dark-grey">No Profiles to Display  </div>
+    <%}%>
     <div class="w3-container ">
 
-        <%if(students){%>
+
+        <%if(students.length >0){%>
          <ul class="W3-ul w3-card-4">
             <%students.forEach(function(student){%>
                 <div class="w3-panel">
@@ -56,9 +61,9 @@
                         
                     </li>
                 </div>
-                <%});} else{%>
-                <p> No Portfolios to display </p>
-                <%}%>
+                <%});} %>
+                
+                
                 </ul>
     <script>
     function displayInfo(username){
@@ -72,4 +77,17 @@
     }
 }
     </script>
+ <div "info">
+  <% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
+ </div>
  <% include _homeFooter %>

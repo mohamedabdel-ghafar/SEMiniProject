@@ -1,8 +1,34 @@
 <% include header %>
+<div class="container">
+<% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
+
 <form method = "POST" action = "login">
 <label> Username </label><br>
 <input type="textbox" name ="username"><br>
 <label> Password</label><br>
 <input type ="password" name="password"><br>
 <input type ="submit" value = "log in">
+<div class="container">
+<% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
+
 <% include footer %>

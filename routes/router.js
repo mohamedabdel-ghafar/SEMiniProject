@@ -47,12 +47,13 @@ router.post('/login',function(req,res){
          {
         
          res.cookie('un',username,{encode : String});
+          req.flash("info","You have logged in successfully");
          res.redirect('/');
          }
          else
          {
             
-            req.flash("error","wrong password");
+            req.flash("error","wrong password or username");
             res.redirect('/login');
          }
          
@@ -152,7 +153,8 @@ Student.findOne({username:username},function(err,student){
     }
     if(err || (student != null && student != undefined))
     {
-        res.send('error');
+        req.flash("error",err);
+        res.redirect('/register');
     }
     else if(lName !=null && lName != undefined)
     {
@@ -178,9 +180,11 @@ Student.findOne({username:username},function(err,student){
         })
         
     }
+    if(newStudent)
     newStudent.save(function(err,data){
         if(err)
     {
+        req.flash("error",err);
         console.log("Error inserting Data  "+err);
         res.redirect('/register');
     }
@@ -189,8 +193,8 @@ Student.findOne({username:username},function(err,student){
       if(newStudent.profilePic.data )
       { console.log(data);
           fs.unlink(imgPath,function(err){ if(err)console.log(err)})};   
-     console.log("inserting Data done successfully !");
     res.cookie('un',req.body.username);
+     req.flash("info","Register  done successfully !");
     res.redirect('/login');    
     }
     });

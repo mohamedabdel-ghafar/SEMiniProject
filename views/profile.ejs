@@ -1,17 +1,6 @@
 <%include header%>
 <div class="container">
-
-  <% errors.forEach(function(error) { %>
-    <div class="alert alert-danger" role="alert">
-      <%= error %>
-    </div>
-  <% }) %>
-
-  <% infos.forEach(function(info) { %>
-    <div class="alert alert-info" role="alert">
-      <%= info %>
-    </div>
-  <% }) %>
+ 
   
 <br>
 <br>
@@ -25,9 +14,13 @@
 <br>
 
   <%}%>
-<a href="/profile/add_work" class="w3-btn w3-white" >Add Links</a><br>
-<a href="/profile/add_pics" class="w3-btn w3-white" >Add Screecnshots</a><br>
-<button class="w3-btn w3-white" onclick="showEdit()" >Edit Profile Picture</a>
+<h2>You Are Logged In</h2>
+<h4> Username: <%=currentStudent.username%> </h4>
+<h4> Email: <%=currentStudent.email%> </h4>
+<h4> First Name: <%=currentStudent.f_name%> </h4>
+<a href="/profile/add_work" class="w3-btn w3-dark-grey w3-border" >Add Links</a><br>
+<a href="/profile/add_pics" class="w3-btn w3-dark-grey w3-border" >Add Screecnshots</a><br>
+<button class="w3-btn w3-dark-grey w3-border" onclick="showEdit()" >Edit Profile Picture</a>
 
 </div>
 
@@ -87,6 +80,17 @@
     </tr> 
  <%});}}%>
   </table>
+<% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
 
 
 
@@ -102,6 +106,7 @@
   <input type="submit" value="upload">
   </form>
 </div>  
+ 
 <script>
 function showEdit(){
   var form = document.getElementById('updateProfilePic');
