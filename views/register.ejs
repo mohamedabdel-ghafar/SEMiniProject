@@ -1,0 +1,28 @@
+    <%include header %>
+<div >
+<div class="container" id="input-form"  >
+<form id="register_form" action="/register" method="POST" class = "w3-form" enctype="multipart/form-data" style="margin-top:100px">
+<input type = "text"  name="username" id="username" required></input><br>
+<label>Username<br></label><br>
+<input type = "email"  name="email" id="email" required></input><br>
+<label>Guc mail<br></label><br>
+<input type = "text" name="f_name" id="f_name" required></input><br>
+<label>First Name<br></label><br>
+<input type = "text" name ="l_name" id="l_name" ></input><br>
+<label>Last Name<br></label><br>
+<input type = "password" name="password" id="password" required></input><br>
+<label>Password<br></label><br>
+<input type="file" name="profilePic"><br>
+<label>Profile Picture(Optional)<br></label><br>
+<button class="w3-button w3-dark-grey" type = "submit" onclick="return">Register</button>
+</form>
+</div>
+<div id="about-us" style = "margin-left :100px">
+<b>Why Join Us ?</b><br>
+//some crap goes here
+</div>
+</div>
+<script name="validate" type= "text/javascript">
+//validate Email
+</script>
+<%include footer %>

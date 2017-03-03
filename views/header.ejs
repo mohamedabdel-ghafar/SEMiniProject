@@ -1,0 +1,44 @@
+</!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>The MET and BI Porfolio Portal</title>
+	<link rel="stylesheet" type="text/css" href="/css/w3.css" />
+</head>
+
+
+<body class="w3-light-grey">
+	<header class="special-header w3-container w3-dark-grey">
+		<a href="/" class="btn w3-button w3-white ">
+Home 
+</a>
+		<%if(currentStudent != undefined && currentStudent != null){%>
+	<button onclick= "deleteCookie()"class="btn w3-button w3-white ">
+log out
+</button>
+	<a href="/profile" class="btn w3-button w3-white ">
+your portoflio
+</a>		
+	<%}else{%>
+	
+
+<a href="/login" class="btn w3-button w3-white pull-right ">
+log in 
+</a>
+		<a href="/register" class="btn w3-button w3-white pull-right">
+Register
+</a>
+	<%}%>
+	</header>
+	<script>
+	function deleteCookie(){
+		document.cookie = "un=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+		window.location.replace("/");
+
+	}
+	</script>
+
+	<div class="container">
+
+  	<div class="w3-container" name="body">

@@ -1,0 +1,50 @@
+<% include header %>
+    <div class="w3-contianer w3-light-grey">
+        <form method="POST" action="add_work">
+            <label class="w3-label w3-text-black " >Title</label><br>
+            <input class="w3-input w3-broder w3-round" name="title" type="textbox" required><br>
+            <label class="w3-label w3-text-black"> Content</label><br>
+            <input class="w3-input w3-broder w3-round" name="content" type="textbox" required><br>
+            <input type="submit" value="Save Work" class="w3-btn-block w3-black">
+        </form>
+    </div>
+    <div class="w3-panel">
+        
+    </div>
+    <div id="previous works" class="w3-contianer w3-light-grey">
+    <table class="w3-table">
+        <tr>
+                <td class="w3-panel w3-dark-grey">
+                    
+                    Title
+                </td>
+                <td class="w3-panel w3-dark-grey">
+                    Links
+                </td>
+            </tr>
+            <% if(currentStudent.links.length ==0) { %>
+            <tr>
+                <td>
+            No Previous Links
+                </td>
+            </tr>
+            <%} else {%>
+            <%currentStudent.links.forEach(function(link){ %>
+            <tr>
+                <td class="w3-panel w3-blue">
+                    
+                    <%= link.title%>
+                </td>
+                <td class="w3-panel w3-blue">
+                    <%= link.link%>
+                </td>
+            </tr>
+        
+
+
+            <% });}%>
+        </table>
+
+    </div>
+
+    <% include footer %>

@@ -1,0 +1,114 @@
+<%include header%>
+<div class="container">
+
+  <% errors.forEach(function(error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% }) %>
+
+  <% infos.forEach(function(info) { %>
+    <div class="alert alert-info" role="alert">
+      <%= info %>
+    </div>
+  <% }) %>
+  
+<br>
+<br>
+<div id= "main" class="w3-main" style : "margin.left:25%">
+
+<div class="w3-third w3-container w3-margin-buttom">
+<%if( currentStudent.profilePic.data != null && currentStudent.profilePic.data !=undefined ){%>
+<img src="data:image/png;base64,<%=(currentStudent.profilePic.data.toString('base64'))%>" height="100" width="200" /> <br>
+<%}else{%>
+<img src="/tempImages/def-male.png" height="100" width="200" />
+<br>
+
+  <%}%>
+<a href="/profile/add_work" class="w3-btn w3-white" >Add Links</a><br>
+<a href="/profile/add_pics" class="w3-btn w3-white" >Add Screecnshots</a><br>
+<button class="w3-btn w3-white" onclick="showEdit()" >Edit Profile Picture</a>
+
+</div>
+
+<%if( (currentStudent.links.length ==0) && (currentStudent.pics.length ==0) ){%>
+<br>
+<br>
+<br>
+<h1 class="w3-content w3-dark-grey w3-border w3-round">You currently have no portfolio,Add a link or a screenshot to create a portfolio !</h1>
+<%}else{%>
+ <%if(currentStudent.links.length !=0) {%>
+ <br>
+<br>
+<br>
+ <h1 class="w3-content w3-dark-grey w3-border w3-round"> Previous Links & Repos </h1> 
+  <table class = "w3-table w3-hoverable" >
+     <tr class="w3-hover-red">
+    <th>
+      Title
+    </th>
+    <th>
+      Link
+    </th>
+     </tr>
+  <%currentStudent.links.forEach(function(link){%>
+    <tr class="w3-hover-black">
+    <td>
+      <%=link.title%>
+    </td>
+    <td>
+      <%=link.link%>
+    </td>
+    </tr> 
+ <%});}%>
+  </table>
+<%if(currentStudent.pics.length !=0) {%>
+ <br>
+<br>
+<br>
+ <h1 class="w3-content w3-dark-grey w3-border w3-round"> Previous screenshots </h1> 
+  <table class = "w3-table w3-hoverable" >
+     <tr class="w3-hover-red">
+    <th class="w3-padding-jumbo">
+      Title
+    </th>
+    <th class="w3-padding-jumbo" >
+    Screenshot
+    </th >
+     </tr>
+  <%currentStudent.pics.forEach(function(pic){%>
+    <tr class="w3-hover-black">
+    <td class="w3-padding-medium">
+      <%=pic.title%>
+    </td>
+    <td class="w3-padding-medium">
+      <img src="data:image/png;base64,<%=(pic.data.toString('base64'))%>" height="25%" width="25%" />
+    </td>
+    </tr> 
+ <%});}}%>
+  </table>
+
+
+
+  
+
+
+</div>
+</div>
+<div id="updateProfilePic" style="display:none">
+  <form action="/profile" enctype="multipart/form-data" method="POST">
+
+  <input type="file" name="image" required><br>
+  <input type="submit" value="upload">
+  </form>
+</div>  
+<script>
+function showEdit(){
+  var form = document.getElementById('updateProfilePic');
+  if(form.style.display == 'none')
+ form.style.display = 'flex';
+ else
+ form.style.display = 'none';
+}
+</script>
+<%include footer%>

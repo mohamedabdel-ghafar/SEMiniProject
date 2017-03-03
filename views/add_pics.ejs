@@ -1,0 +1,54 @@
+<% include header %>
+<div class="w3-contianer ">
+<form method="POST" action="add_pics" enctype="multipart/form-data">
+<label class ="w3-label w3-text-black">Title</label><br>
+<input type ="textbox"  class= "w3-input w3-broder w3-round"name = "title" required> 
+<label class ="w3label w3-text-black"> Picture File </label><br>
+<input type="file" onchange="validate"  id="fileUploader" name="screenshot" required><br>
+<input type="image" name="submitBtn" class="w3-btn w3-grey" visible="false" value ="Upload Screenshot">    
+</form>
+</div> 
+<div id="PrevPics" >
+<table class ="w3-table">
+    <tr>
+        <td>
+            <label class ="w3-panel w3-black">Title</label>
+        </td>
+        <td>
+            <label class ="w3-panel w3-black">screenshot</label>
+        </td>
+        
+    </tr>
+        <%if(currentStudent.pics.length ==0){%>
+    <tr>
+        Nothing To display
+    </tr>       
+        <%}else{%>
+        <%currentStudent.pics.forEach(function(pic){%>
+        <tr>
+            <td>
+                <%=pic.title%>
+            </td>
+            <td>
+                <img src="data:image/png;base64,<%=(pic.data.toString('base64'))%>" height="100" width="200" />
+            </td>
+            <%})}%>
+        </tr>
+   
+</table>
+</div>
+<script>
+function validate(){
+    var imageType = /^image\//;
+    if(!imageType.test( document.getElementById('fileUploader').files[0].type) )
+    {
+        window.alert('please select an image file');
+        document.getElementById('submitBtn').style.display = "none";
+    }
+    else
+    {
+        window.alert('Good boy');
+    }
+}
+</script>
+<% include footer %>

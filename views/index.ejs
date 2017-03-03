@@ -1,0 +1,75 @@
+<% include header %>
+    <div class="w3-panel w3-dark-grey"> Click On a user's profile to view their profile </div>
+    <div class="w3-container ">
+
+        <%if(students){%>
+         <ul class="W3-ul w3-card-4">
+            <%students.forEach(function(student){%>
+                <div class="w3-panel">
+               
+                    <li id="<%=student.username%>" class ="w3-hovrable w3-hover-red" onclick="displayInfo('<%=student.username%>')">
+                        
+                 First Name : <%=student.f_name%><br>
+                 Username :  <%=student.username%><br>
+                        <div id="<%=student.username%>dropdown" style="display:none;">
+                    
+                        <%if(! student.profilePic ){%>
+                        <img src="data:image/png;base64,<%=(student.profilePic.data.toString('base64'))%>" height="25%" width="25%" />
+                        <%}else{%>
+                        <img src="/tempImages/def-male.png" height="100" width="200" />
+                        <%}%>
+                        <%if(student.pics.length>=2){%>
+        <br>
+        <label class="w3-label">Title : <%=student.pics[0].title%> <br>
+        <img class ="w3-border" src="data:image/png;base64,<%=(student.pics[0].data.toString('base64'))%>" height="25%" width="25%" /><br>
+        <label>Title : <%=student.pics[1].title%> <br>
+        <img src="data:image/png;base64,<%=(student.pics[1].data.toString('base64'))%>" height="25%" width="25%" /><br>
+                        <%}else{%>
+                        <%if(student.pics.length==1){%>
+                        <%if(student.links.length>0){%>
+                <br>
+                <label>Title : <%=student.pics[0].title%> <br>
+        <img src="data:image/png;base64,<%=(student.pics[0].data.toString('base64'))%>" height="25%" width="25%" /><br>
+              <br>  <label>Title : <%=student.links[0].title%> <br>
+               <br> Link: <%=student.links[0].link%>              
+                        <%}else{%>
+                        <br>
+                        <label>Title : <%=student.pics[0].title%> <br>
+        <img src="data:image/png;base64,<%=(student.pics[0].data.toString('base64'))%>" height="25%" width="25%" />
+                                   
+
+
+                        <%}}else{%>
+                        <%if(student.links.length>=2){%>
+                <br>
+                <label>Title : <%=student.links[1].title%> <br>
+                       Link:  <%=student.links[1].link%> <br>
+                <label>Title : <%=student.links[0].title%> <br>
+                      Link:  <%=student.links[0].link%>             <br> 
+                        <%}else {%>
+                        <br>
+                        <label>Title : <%=student.links[0].title%> <br>
+                            Link :      <%=student.links[0].link%> <br>
+                        <%}}}%>
+
+                        </div>
+                        
+                    </li>
+                </div>
+                <%});} else{%>
+                <p> No Portfolios to display </p>
+                <%}%>
+                </ul>
+    <script>
+    function displayInfo(username){
+    var cElement = document.getElementById(username+"dropdown");
+    if(cElement.style.display == 'none')
+    {
+        cElement.style.display='flex';    
+    }
+    else{
+    cElement.style.display='none';    
+    }
+}
+    </script>
+ <% include _homeFooter %>
